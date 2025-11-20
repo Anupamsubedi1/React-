@@ -1,29 +1,29 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+
 import './App.css'
 
 
-const Card = ({ label, onClick }) => {
+
+const Card = ({title, movielength  }) => {
   return ( 
-    <div className="card">
-      <button onClick={onClick}>{label ? `Click Me (${label})` : `Click Me`}</button>
-    </div>
+    <div style={{
+      border: "2px solid black",
+      margin: "20px",
+      padding: "20px",
+      borderRadius: "10px",
+      backgroundColor: "lightblue",
+      maxWidth: "300px"
+    }}><h1>{title} </h1></div>
   )
 }
 
 const App = () => {
-  const handleClick = (num) => {
-    console.log(`Card ${num} clicked`);
-  };
-
+  
   return (
-    <>
-      <Card label="1" onClick={() => handleClick(1)} />
-      <Card label="2" onClick={() => handleClick(2)} />
-      <Card label="3" onClick={() => handleClick(3)} />
-      <Card/>
-    </>
+    <div className="App-header">
+      <Card title="star wars" movielength={10} actors = {["Mark Hamill", "Harrison Ford"]}/>
+      
+      <Card title="avatar"  movielength={20}  actors = {["Sam Worthington", "Zoe Saldana"]}/>
+    </div>
   );
 }
 
