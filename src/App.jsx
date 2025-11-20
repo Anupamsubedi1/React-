@@ -18,6 +18,7 @@ const API_OPTIONS = {
 };
 const App = () => {
 
+  const [searchTerm, setSearchTerm] = useState('')
   const[error, setError] = useState(null);
   const [movieList, setMovieList] = useState([]);
   const[loading, setLoading] = useState(false);
@@ -28,7 +29,7 @@ const App = () => {
   
     setError('')
     try {
-      const endpoint = `${API_BASE_URL}/discover/movie?sort_by=popularity.desc&query=${encodeURIComponent(query)}`;
+      const endpoint = query ?  `${API_BASE_URL}/search/movie?query=${encodeURIComponent(query)}` : `${API_BASE_URL}/discover/movie?sort_by=popularity.desc&query=${encodeURIComponent(query)}`;
 
       const response = await fetch(endpoint, API_OPTIONS);
       if (!response.ok) {
@@ -56,13 +57,12 @@ const App = () => {
   }
     
 
-  const [searchTerm, setSearchTerm] = useState('')
 
   useEffect(() => {
 
-    fetchMovies();
+    fetchMovies(searchTerm);
 
-  }, [])
+  }, [searchTerm])
 
   return (
     <main>
